@@ -1,6 +1,6 @@
 //TODO:
-//Crear repo en github y subirlo
-//Logica del juego
+//Acabar funcion actualizarTablero para mostrar las fichas de los jugadores
+//Logica correspondiente
 package cuatroenraya;
 
 import java.util.Scanner;
@@ -11,15 +11,23 @@ public class CuatroEnRaya {
 
     public static void main(String[] args) throws InterruptedException {
         boolean jugando = true;
-        char[][] tablero = new char[6][7];
-
+        //Creamos, rellenamos y mostramos el tablero de juego
+        int rows = 6;
+        int cols = 7;
+        char[][] tablero = new char[rows][cols];
+        int jugada = 0;
         while (jugando) {
             mostrarIntro();
-            
+
             imprimirTablero(tablero);
-            
-            
-            
+            System.out.println("Turno de Jugador 1");
+            //Llamar a pedirJugada
+            jugada = pedirJugada();
+            //Mostrar jugada
+
+            System.out.println("Turno de Jugador 2");
+            //Llamar a pedirJugada
+            jugada = pedirJugada();
             //Esta SIEMPRE al final
             jugando = menuSalida();
 
@@ -42,13 +50,8 @@ public class CuatroEnRaya {
     }
 
     //Crear tablero de juego
-    public static void imprimirTablero(char tablero[][]) {
-        //Creamos, rellenamos y mostramos el tablero de juego
-        int rows = 6;
-        int cols = 7;
-        tablero = new char[rows][cols];
-
-        for (int i = 0; i < cols; i++) {
+    public static void imprimirTablero(char tablero[][]) { //SOLO muestra el tablero al principio
+        for (int i = 0; i <= tablero.length; i++) {
             System.out.print((i + 1) + " ");
         }
         System.out.println();
@@ -56,22 +59,32 @@ public class CuatroEnRaya {
         for (int i = 0; i < tablero.length; i++) {
 
             for (int j = 0; j < tablero[i].length; j++) {
-                tablero[i][j] = 'O';
+                System.out.print("O");
                 System.out.print(tablero[i][j] + " ");
             }
             System.out.println();
         }
     }
-    
-    //Pedir jugada al jugador 1
-//    public static int pedirJugada1(){
-//        
-//    }
-    
-    
-    //Pedir jugada al jugador 2
-    
 
+    //Pedir jugada al jugador
+    public static int pedirJugada() {
+        int jugada = 0;
+        while (jugada < 1 || jugada > 7) {
+            System.out.print("Elige donde tirar la ficha (1-7): ");
+            jugada = sc.nextInt();
+            if (jugada < 1 || jugada > 7) {
+                System.out.println("Esa columna no existe genio");
+            }
+        }
+        return jugada;
+    }
+
+    //Mostrar la jugada
+    public static void actualizarTablero(char tablero[][], int jugada) {
+        
+    }
+
+    //Pedir jugada al jugador 2
     //Para detener el bucle principal
     public static boolean menuSalida() {
         boolean bool = true;
