@@ -1,6 +1,5 @@
 //TODO:
-//Acabar funcion actualizarTablero para mostrar las fichas de los jugadores
-//Logica correspondiente
+//Acabar de afinar actualizarTablero y ver como muestro el tablero una vez hecha una jugada
 package cuatroenraya;
 
 import java.util.Scanner;
@@ -11,7 +10,7 @@ public class CuatroEnRaya {
 
     public static void main(String[] args) throws InterruptedException {
         boolean jugando = true;
-        //Creamos, rellenamos y mostramos el tablero de juego
+        char ficha = ' ';
         int rows = 6;
         int cols = 7;
         char[][] tablero = new char[rows][cols];
@@ -24,10 +23,14 @@ public class CuatroEnRaya {
             //Llamar a pedirJugada
             jugada = pedirJugada();
             //Mostrar jugada
+            actualizarTablero(tablero, jugada, '1');
 
             System.out.println("Turno de Jugador 2");
             //Llamar a pedirJugada
             jugada = pedirJugada();
+            //Mostrar jugada
+            actualizarTablero(tablero, jugada, '2');
+            
             //Esta SIEMPRE al final
             jugando = menuSalida();
 
@@ -78,9 +81,19 @@ public class CuatroEnRaya {
         }
         return jugada;
     }
-
+    //Meter jugada en el tablero
+    public static void actualizarTablero(char tablero[][], int jugada, char ficha) {
+        int columna = jugada -1;        
+        for (int i = tablero.length - 1; i >= 0; i--) {
+            if (tablero[i][columna] == 'O') {
+                tablero[i][columna] = ficha;
+                break;
+            }
+        }
+    }
+    
     //Mostrar la jugada
-    public static void actualizarTablero(char tablero[][], int jugada) {
+    public static void mostrarTablero(char tablero[][]){
         
     }
 
