@@ -1,5 +1,5 @@
 //TODO:
-//Acabar de afinar actualizarTablero y ver como muestro el tablero una vez hecha una jugada
+//Acabar de afinar todas las funciones relacionadas con el fakin tablero
 package cuatroenraya;
 
 import java.util.Scanner;
@@ -54,6 +54,7 @@ public class CuatroEnRaya {
 
     //Crear tablero de juego
     public static void imprimirTablero(char tablero[][]) { //SOLO muestra el tablero al principio
+        char elemento = 'O';
         for (int i = 0; i <= tablero.length; i++) {
             System.out.print((i + 1) + " ");
         }
@@ -62,7 +63,7 @@ public class CuatroEnRaya {
         for (int i = 0; i < tablero.length; i++) {
 
             for (int j = 0; j < tablero[i].length; j++) {
-                System.out.print("O");
+                System.out.print(elemento + " ");
                 System.out.print(tablero[i][j] + " ");
             }
             System.out.println();
@@ -83,18 +84,23 @@ public class CuatroEnRaya {
     }
     //Meter jugada en el tablero
     public static void actualizarTablero(char tablero[][], int jugada, char ficha) {
-        int columna = jugada -1;        
-        for (int i = tablero.length - 1; i >= 0; i--) {
-            if (tablero[i][columna] == 'O') {
-                tablero[i][columna] = ficha;
-                break;
+        int columna = jugada -1;
+        char fichaJug = ficha; //Puede ser '1' o '2', lo establezco por parametro
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[columna].length; j++) {
+                if (tablero[i][columna] == 'O') {
+                    tablero[i][columna] = fichaJug;
+                }
             }
         }
     }
     
     //Mostrar la jugada
-    public static void mostrarTablero(char tablero[][]){
-        
+    public static void mostrarTablero(char tablero[][], char ficha){
+        char fichaJugador = ficha; //Puede ser '1' o '2', lo establezco por parametro
+        for (int i = 0; i < tablero.length; i++) {
+            
+        }
     }
 
     //Pedir jugada al jugador 2
